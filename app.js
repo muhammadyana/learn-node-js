@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const port = 3002
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const path = require('path');
 
 // app.use((req, res, next) => {
 //   console.log(' In the middleware');
@@ -16,7 +17,7 @@ app.use(shopRoutes);
 
 // handling not found route
 app.use((req, res, next) => {
-  res.status(404).send('<h1> Oppsss... page not found </h1>');
+  res.sendFile(path.join(__dirname, 'views', '404.html'));
 });
 
 app.listen(port, () => {
